@@ -1,0 +1,23 @@
+{
+  "name": "hashconfig",
+  "version": "1.0.0",
+  "description": "Automates creation of configuration file",
+  "main": "hconfig.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Config",
+    "configuration"
+  ],
+  "author": "",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "command-line-args": "^3.0.5",
+    "express": "^4.14.0",
+    "fs": "0.0.1-security",
+    "prompt": "^1.0.0",
+    "traverse": "^0.6.6"
+  }
+}

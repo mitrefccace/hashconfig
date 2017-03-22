@@ -24,12 +24,13 @@ var prompt = require("prompt");
 var commandLineArgs = require("command-line-args");
 var traverse = require("traverse");
 
-try{
+//try{
   // Define command line options
   var optionDefinitions = [
     { name: "force", alias: "f", type: Boolean },
     { name: "decode-input", alias: "i", type: Boolean },
     { name: "decode-output", alias: "o", type: Boolean },
+	{ name: "replace", alias: "r", type: String, multiple: true, defaultOption: false },
     { name: "help", alias: "h", type: Boolean }
   ];
   var options = commandLineArgs(optionDefinitions);
@@ -44,7 +45,9 @@ Usage: node hconfig.js [options] \n\
     -h, --help           Displays help text\n\
     -i, --decode-input   Decodes the input template file, to be used when the \n\
 						 template is encoded\n\
-    -o, --decode-output  Generates an output file without encoding")
+    -o, --decode-output  Generates an output file without encoding \n\
+	-r, --replace <path_to_field> <new_value> \n\
+						 Overwrites the existing value for given field with new value")
     process.exit()
   }
 
@@ -108,6 +111,41 @@ Usage: node hconfig.js [options] \n\
     });
     fs.writeFileSync("config_new.json",JSON.stringify(jsonfile, null, 4)); //write new config file
   }
+  
+  else if (options.hasOwnProperty("replace")){
+	if (options["replace"].length === 2){
+	  for (var i = 0; i<fields.length; i++){
+		var fieldstring = (fields[i].toString()).replace(/ /g, '');
+	    if (options["replace"][0] == fieldstring){
+		  console.log('Replacing ' + (options["replace"][0]).toString() + '\'s default value with ' + (options["replace"][1]).toString() + '...');
+		  defaults[i] = options["replace"][1];
+		}
+		var buf = Buffer.from(defaults[i].toString(), "utf-8");
+		var val = buf.toString("base64");
+		if (options["decode-output"] === true){
+		  defaults[i] = decode(val);
+        }
+        else{
+		  defaults[i] = val;
+        }
+		var j = 0;
+		traverse(jsonfile).forEach(function () {
+        if (this.isLeaf === true){
+          this.update(defaults[j]);
+          j = j + 1;
+        }
+      });
+    fs.writeFileSync("config_new.json",JSON.stringify(jsonfile, null, 4)); //write new config file
+			//replace defaults[i] with options["replace"][1]
+			//need to eliminate spaces in fields[i] so that the command line can process it
+			//OR can implement prompt to accept it as is (then the option -r would be bool)
+	  }
+	}
+	else {
+	  console.log('You must submit the path to the desired field and the value with which \
+to replace the default. For the field name, do not use spaces and separate field levels with commas.');
+	}
+  }
 
   else{
     prompt.start();
@@ -138,8 +176,8 @@ Usage: node hconfig.js [options] \n\
     var decodedStr = Buffer.from(encodedStr, "base64");
     return decodedStr.toString();
   }
-}
-catch(err){ //displays help text if syntax is incorrect
+//}
+/* catch(err){ //displays help text if syntax is incorrect
   console.log("Error: invalid syntax. Please consult the help documentation below. \n\
 Usage: node hconfig.js [options] \n\
   options: \n\
@@ -148,6 +186,8 @@ Usage: node hconfig.js [options] \n\
     -h, --help           Displays help text\n\
     -i, --decode-input   Decodes the input template file, to be used when the \n\
 	                     template is encoded\n\
-    -o, --decode-output  Generates an output file without encoding")
+    -o, --decode-output  Generates an output file without encoding \n\
+	-r, --replace <path_to_field> <new_value> \n\
+						 Overwrites the existing value for given field with new value")
   process.exit()
-}
+} */

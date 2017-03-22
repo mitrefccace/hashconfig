@@ -96,7 +96,7 @@ by commas, and contain no spaces. See the example below for the updating the val
 thirdpartysite,proxy,tunnel (thirdpartysite is the first level, proxy is the second level, and tunnel is the third 
 level). Note that the -o option is used for ease of reading the output file, but the replace option also suppords encoding.
 <p align="left">
-	<img src="documentation/replace.png" width="350" alt="Running hconfig --replace thirdpartysite,proxy,tunnel false"/>
+	<img src="documentation/replace.png" width="500" alt="Running hconfig --replace thirdpartysite,proxy,tunnel false"/>
 </p>
 <p align="left">
 	<img src="documentation/replacejson.png" width="600" alt="replace json file"/>  

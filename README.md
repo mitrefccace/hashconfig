@@ -89,9 +89,9 @@ config.json_TEMPLATE.
 	<img src="documentation/decodeoutputjson.png" width="600" alt="decode-output json file"/>  
 </p>
 
-6. (Optional) Adding the argument '--replace' or '-r', along with a field value pair ("node hconfig.js 
---replace <field> <value>") returns an output file in which the given field is updated with the new given
-value, and all other fields contain the default value. The field name should be given with all levels, separated
+6. (Optional) Adding the argument '--replace' or '-r', along with one or more field value pairs ("node hconfig.js 
+--replace <field1> <value1> <field2> <value2> ...") returns an output file in which the given field(s) is/are updated with the new given
+value(s), and all other fields keep the default value. The field name should be given with all levels, separated
 by commas, and contain no spaces. See the example below for the updating the value corresponding to the field 
 thirdpartysite,proxy,tunnel (thirdpartysite is the first level, proxy is the second level, and tunnel is the third 
 level). Note that the -o option is used for ease of reading the output file, but the replace option also suppords encoding.

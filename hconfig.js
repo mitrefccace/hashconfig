@@ -28,6 +28,7 @@ try{
   // Define command line options
   var optionDefinitions = [
     { name: "force", alias: "f", type: Boolean },
+	{ name: "filename", alias: "n", type: String, defaultOption: true, defaultValue: "config.json_TEMPLATE"},
     { name: "decode-input", alias: "i", type: Boolean },
     { name: "decode-output", alias: "o", type: Boolean },
 	{ name: "replace", alias: "r", type: String, multiple: true, defaultOption: false },
@@ -52,7 +53,7 @@ Usage: node hconfig.js [options] \n\
   }
 
   // Parse the JSON file
-  var jsonfile = JSON.parse(fs.readFileSync("config.json_TEMPLATE","utf8"));
+  var jsonfile = JSON.parse(fs.readFileSync(options["filename"],"utf8"));
 
   /*
   Go through config template file and find each field that needs user input.

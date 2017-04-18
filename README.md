@@ -1,4 +1,4 @@
-# HashConfig Tool  
+# HashConfig Tool
 
 NOTICE: This (software/technical data) was produced for the U. S. Government 
 under Contract Number HHSM-500-2012-00008I, and is subject to Federal 
@@ -89,7 +89,21 @@ config.json_TEMPLATE.
 	<img src="documentation/decodeoutputjson.png" width="600" alt="decode-output json file"/>  
 </p>
 
-6. Follow prompts for user input. The user may also add any combination of the 
+6. (Optional) Adding the argument '--replace' or '-r', along with one or more field value pairs ("node hconfig.js 
+--replace <field1> <value1> <field2> <value2> ...") returns an output file in which the given field(s) is/are updated with the new given
+value(s), and all other fields keep the default value. The field name should be given with all levels, separated
+by commas, and contain no spaces. See the example below for the updating the value corresponding to the field 
+thirdpartysite,proxy,tunnel (thirdpartysite is the first level, proxy is the second level, and tunnel is the third 
+level). Note that the -o option is used for ease of reading the output file, but the replace option also suppords encoding.
+<p align="left">
+	<img src="documentation/replace.png" width="500" alt="Running hconfig --replace thirdpartysite,proxy,tunnel false"/>
+</p>
+<p align="left">
+	<img src="documentation/replacejson.png" width="600" alt="replace json file"/>  
+</p>
+
+
+7. Follow prompts for user input. The user may also add any combination of the 
 optional arguments. Note: If arguments are entered incorrectly, or if the user 
 inputs the '--help' or '-h' argument, help text will appear and the program 
 will exit.
@@ -97,15 +111,15 @@ will exit.
 	<img src="documentation/help.png" width="600" alt="help text"/>  
 </p>
 
-7. After index.js has finished running, open config_new.json in the same 
+8. After index.js has finished running, open config_new.json in the same 
 directory to see the new encoded configuration file.
 <p align="left">
 	<img src="documentation/confignew.png" width="600" alt="config_new sample output"/>  
 </p>
 
-8. (Optional) If a field needs to be changed in config_new.json, type "node 
+9. (Optional) If one or more fields need to be changed in config_new.json, type "node 
 updateconfig.js" in the command line, and follow prompts for user input. This 
-program uses the '--decode-input' and '--decode-output' command line arguments 
+program uses the '--decode-input', '--decode-output', and '--replace' command line arguments 
 in the same manner as hconfig.js. For example, we can modify the encoded 
 config_new.json file that we created in step 2 using the '--decode-input' 
 argument.
@@ -113,14 +127,14 @@ argument.
 	<img src="documentation/updateconfig.png" width="500" alt="Running updateconfig --decode-input"/>  
 </p>
 
-9. Follow prompts for user input. Note: If arguments are entered incorrectly, 
+10. Follow prompts for user input. Note: If arguments are entered incorrectly, 
 or if the user inputs the '--help' or '-h' argument, help text will appear and 
 the program will exit.
 <p align="left">
 	<img src="documentation/helpupdate.png" width="600" alt="help text"/>  
 </p>
 
-10. After updateconfig.js has finished running, open config_updated.json in the 
+11. After updateconfig.js has finished running, open config_updated.json in the 
 same directory to see the new encoded configuration file.
 <p align="left">
 	<img src="documentation/configupdated.png" width="600"  alt="config_updated sample output"/>

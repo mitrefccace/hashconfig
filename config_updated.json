@@ -1,0 +1,19 @@
+{
+    "debuglevel": "verbose",
+    "http": {
+        "port1": "8004",
+        "port2": "8005"
+    },
+    "thirdpartysite": {
+        "proxy": {
+            "host": "google.com",
+            "port": "80",
+            "tunnel": "true"
+        }
+    },
+    "portalurl": "http://portalname.com:8081/welcome.html",
+    "login": {
+        "username": "foo1",
+        "password": "bar"
+    }
+}

@@ -28,8 +28,10 @@ try{
   // Define command line options
   var optionDefinitions = [
     { name: "force", alias: "f", type: Boolean },
+	{ name: "filename", alias: "n", type: String, defaultOption: true, defaultValue: "config.json_TEMPLATE"},
     { name: "decode-input", alias: "i", type: Boolean },
     { name: "decode-output", alias: "o", type: Boolean },
+	{ name: "replace", alias: "r", type: String, multiple: true, defaultOption: false },
     { name: "help", alias: "h", type: Boolean }
   ];
   var options = commandLineArgs(optionDefinitions);
@@ -44,12 +46,14 @@ Usage: node hconfig.js [options] \n\
     -h, --help           Displays help text\n\
     -i, --decode-input   Decodes the input template file, to be used when the \n\
 						 template is encoded\n\
-    -o, --decode-output  Generates an output file without encoding")
+    -o, --decode-output  Generates an output file without encoding \n\
+    -r, --replace <field1> <value1> <field2> <value2> ... \n\
+                         Overwrites the existing value for given field with new value")
     process.exit()
   }
 
   // Parse the JSON file
-  var jsonfile = JSON.parse(fs.readFileSync("config.json_TEMPLATE","utf8"));
+  var jsonfile = JSON.parse(fs.readFileSync(options["filename"],"utf8"));
 
   /*
   Go through config template file and find each field that needs user input.
@@ -108,6 +112,50 @@ Usage: node hconfig.js [options] \n\
     });
     fs.writeFileSync("config_new.json",JSON.stringify(jsonfile, null, 4)); //write new config file
   }
+  
+    else if (options.hasOwnProperty("replace")){
+	  var fieldfound = false;
+	  if (options["replace"].length % 2 === 0){
+	    var numfields = options["replace"].length / 2;
+		for (var k = 0; k<numfields; k++){
+		  fieldfound = false;
+		  for (var i = 0; i<fields.length; i++){
+			var fieldstring = (fields[i].toString()).replace(/ /g, '');
+			if (options["replace"][0] == fieldstring){
+			  fieldfound = true;
+			  console.log('Replacing ' + (options["replace"][0]).toString() + '\'s default value with ' + (options["replace"][1]).toString() + '...');
+		      defaults[i] = options["replace"][1];
+			}
+			var buf = Buffer.from(defaults[i].toString(), "utf-8");
+			var val = buf.toString("base64");
+			if (options["decode-output"] === true){
+			  defaults[i] = decode(val);
+			}
+			else{
+			  defaults[i] = val;
+			}
+			var j = 0;
+			traverse(jsonfile).forEach(function () {
+			  if (this.isLeaf === true){
+				this.update(defaults[j]);
+				j = j + 1;
+			  }
+			});
+		  }
+		  if (fieldfound == false){
+			console.log('Warning: ' + options["replace"][0] + ' is not a valid field name.');
+		  }
+		  options["replace"].shift();
+		  options["replace"].shift();
+		}
+		fs.writeFileSync("config_new.json",JSON.stringify(jsonfile, null, 4)); //write new config file
+	  }
+	  else {
+		console.log('Syntax error in the replace option. The command should be of the form \n\
+node hconfig.js --replace <field1> <value1> <field2> <value2> ... \n\
+For fields with multiple levels, use commas to separate the levels, and do not use spaces.');
+	  }
+	}
 
   else{
     prompt.start();
@@ -148,6 +196,8 @@ Usage: node hconfig.js [options] \n\
     -h, --help           Displays help text\n\
     -i, --decode-input   Decodes the input template file, to be used when the \n\
 	                     template is encoded\n\
-    -o, --decode-output  Generates an output file without encoding")
+    -o, --decode-output  Generates an output file without encoding \n\
+    -r, --replace <field1> <value1> <field2> <value2> ... \n\
+                         Overwrites the existing value for given field with new value")
   process.exit()
 }

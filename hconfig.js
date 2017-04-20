@@ -28,7 +28,7 @@ try{
   // Define command line options
   var optionDefinitions = [
     { name: "force", alias: "f", type: Boolean },
-	{ name: "filename", alias: "n", type: String, defaultOption: true, defaultValue: "config.json_TEMPLATE"},
+    { name: "filename", alias: "n", type: String, defaultOption: true, defaultValue: "config.json_TEMPLATE"},
     { name: "decode-input", alias: "i", type: Boolean },
     { name: "decode-output", alias: "o", type: Boolean },
 	{ name: "replace", alias: "r", type: String, multiple: true, defaultOption: false },
@@ -43,6 +43,7 @@ Usage: node hconfig.js [options] \n\
   options: \n\
     -f, --force          Generates a new configuration file with the default \n\
 						 values, no user input\n\
+	-n, --filename		 Accepts the specified template file for input \n\
     -h, --help           Displays help text\n\
     -i, --decode-input   Decodes the input template file, to be used when the \n\
 						 template is encoded\n\
@@ -187,12 +188,14 @@ For fields with multiple levels, use commas to separate the levels, and do not u
     return decodedStr.toString();
   }
 }
+
 catch(err){ //displays help text if syntax is incorrect
   console.log("Error: invalid syntax. Please consult the help documentation below. \n\
 Usage: node hconfig.js [options] \n\
   options: \n\
     -f, --force          Generates a new configuration file with the default \n\
 	                     values, no user input\n\
+    -n, --filename		 Accepts the specified template file for input \n\
     -h, --help           Displays help text\n\
     -i, --decode-input   Decodes the input template file, to be used when the \n\
 	                     template is encoded\n\

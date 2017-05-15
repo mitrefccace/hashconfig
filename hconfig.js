@@ -42,8 +42,8 @@ try{
 Usage: node hconfig.js [options] \n\
   options: \n\
     -f, --force          Generates a new configuration file with the default \n\
-						 values, no user input\n\
-	-n, --filename		 Accepts the specified template file for input \n\
+                         values, no user input\n\
+	-n, --filename       Accepts the specified template file for input \n\
     -h, --help           Displays help text\n\
     -i, --decode-input   Decodes the input template file, to be used when the \n\
 						 template is encoded\n\
@@ -190,17 +190,7 @@ For fields with multiple levels, use commas to separate the levels, and do not u
 }
 
 catch(err){ //displays help text if syntax is incorrect
-  console.log("Error: invalid syntax. Please consult the help documentation below. \n\
-Usage: node hconfig.js [options] \n\
-  options: \n\
-    -f, --force          Generates a new configuration file with the default \n\
-	                     values, no user input\n\
-    -n, --filename		 Accepts the specified template file for input \n\
-    -h, --help           Displays help text\n\
-    -i, --decode-input   Decodes the input template file, to be used when the \n\
-	                     template is encoded\n\
-    -o, --decode-output  Generates an output file without encoding \n\
-    -r, --replace <field1> <value1> <field2> <value2> ... \n\
-                         Overwrites the existing value for given field with new value")
+  console.log("Error: invalid syntax. Please consult the help documentation by running the command 'node hconfig.js -h'."
+)
   process.exit()
 }

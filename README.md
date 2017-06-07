@@ -56,6 +56,7 @@ prompts the user to either accept the default configuration values or input
 custom values, and outputs a configuration file called config_new.json.
 * updateconfig.js is an additional file that can be used for making small 
 changes to the config_new.json file.
+* gui is a subdirectory that contains a HashConfig GUI.
 
 ## Instructions for Use
 1. Open the appropriate local directory in the command prompt.  

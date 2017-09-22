@@ -65,29 +65,21 @@ changes to the config_new.json file.
 
 3. (Optional) Adding the argument '--filename' or '-n' ("node hconfig.js --filename") 
 allows the user to specify any valid json file to use as input.
-![Running hconfig](documentation/filename.png)  
+![Running hconfig --filename](documentation/filename.png)  
 
 4. (Optional) Adding the argument '--force' or '-f' ("node hconfig.js --force") 
 automatically generates config_new.json using the values given in 
 config.json_TEMPLATE.
-<p align="left"> 
-	<img src="documentation/force.png" width="350" alt="Running hconfig --force"/>  
-</p>
+![Running hconfig --force]  (documentation/force.png)
 
 5. (Optional) Adding the argument '--decode-input' or '-i' ("node hconfig.js 
 --decode-input") decodes an encoded config template file. 
-<p align="left">
-	<img src="documentation/decodeinput.png" width="500" alt="Running hconfig --decode-input"/>  
-</p>
+![Running hconfig --decode-input](documentation/decodeinput.png)
 
 6. (Optional) Adding the argument '--decode-output' or '-o' ("node hconfig.js 
 --decode-output") returns an output file that is not encoded.
-<p align="left">
-	<img src="documentation/decodeoutput.png" width="500" alt="Running hconfig --decode-output"/>
-</p>
-<p align="left">
-	<img src="documentation/decodeoutputjson.png" width="600" alt="decode-output json file"/>  
-</p>
+![Running hconfig --decode-output](documentation/decodeoutput.png)
+![decode-output json file](documentation/decodeoutputjson.png)
 
 7. (Optional) Adding the argument '--replace' or '-r', along with one or more field value pairs ("node hconfig.js 
 --replace <field1> <value1> <field2> <value2> ...") returns an output file in which the given field(s) is/are updated with the new given
@@ -95,27 +87,19 @@ value(s), and all other fields keep the default value. The field name should be 
 by commas, and contain no spaces. See the example below for the updating the value corresponding to the field 
 thirdpartysite,proxy,tunnel (thirdpartysite is the first level, proxy is the second level, and tunnel is the third 
 level). Note that the -o option is used for ease of reading the output file, but the replace option also suppords encoding.
-<p align="left">
-	<img src="documentation/replace.png" width="500" alt="Running hconfig --replace thirdpartysite,proxy,tunnel false"/>
-</p>
-<p align="left">
-	<img src="documentation/replacejson.png" width="600" alt="replace json file"/>  
-</p>
+![Running hconfig --replace thirdpartysite,proxy,tunnel false](documentation/replace.png)
+![replace json file](documentation/replacejson.png)
 
 
 8. Follow prompts for user input. The user may also add any combination of the 
 optional arguments. Note: If arguments are entered incorrectly, or if the user 
 inputs the '--help' or '-h' argument, help text will appear and the program 
 will exit.
-<p align="left">
-	<img src="documentation/help.png" width="600" alt="help text"/>  
-</p>
+![help text](documentation/help.png)
 
 9. After index.js has finished running, open config_new.json in the same 
 directory to see the new encoded configuration file.
-<p align="left">
-	<img src="documentation/confignew.png" width="600" alt="config_new sample output"/>  
-</p>
+![config_new sample output](documentation/confignew.png)
 
 10. (Optional) If one or more fields need to be changed in config_new.json, type "node 
 updateconfig.js" in the command line, and follow prompts for user input. This 
@@ -123,19 +107,13 @@ program uses the '--decode-input', '--decode-output', and '--replace' command li
 in the same manner as hconfig.js. For example, we can modify the encoded 
 config_new.json file that we created in step 2 using the '--decode-input' 
 argument.
-<p align="left">
-	<img src="documentation/updateconfig.png" width="500" alt="Running updateconfig --decode-input"/>  
-</p>
+![Running updateconfig --decode-input](documentation/updateconfig.png)
 
 11. Follow prompts for user input. Note: If arguments are entered incorrectly, 
 or if the user inputs the '--help' or '-h' argument, help text will appear and 
 the program will exit.
-<p align="left">
-	<img src="documentation/helpupdate.png" width="600" alt="help text"/>  
-</p>
+![help text](documentation/helpupdate.png)
 
 12. After updateconfig.js has finished running, open config_updated.json in the 
 same directory to see the new encoded configuration file.
-<p align="left">
-	<img src="documentation/configupdated.png" width="600"  alt="config_updated sample output"/>
-</p>
+![config_updated sample output](documentation/configupdated.png)

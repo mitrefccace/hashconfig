@@ -43,9 +43,7 @@ hashconfig" in the command prompt.
 
 3. Install the required node.js modules by running "npm install" in the command 
 prompt. 
-<p align="left">
-	<img src="documentation/npminstall.png" width="300" alt="Installation screenshot"/>
-</p>
+![Installation screenshot](documentation/npminstall.png)
  
  
 ## Code Structure
@@ -63,15 +61,11 @@ changes to the config_new.json file.
 &nbsp;
 
 2. Type "node hconfig.js" in the command line.
-<p align="left">
-	<img src="documentation/hconfig.png" width="500" alt="Running hconfig"/>  
-</p>
+![Running hconfig](documentation/hconfig.png)
 
 3. (Optional) Adding the argument '--filename' or '-n' ("node hconfig.js --filename") 
 allows the user to specify any valid json file to use as input.
-<p align="left"> 
-	<img src="documentation/filename.png" width="350" alt="Running hconfig --filename"/>  
-</p>
+![Running hconfig](documentation/filename.png)  
 
 4. (Optional) Adding the argument '--force' or '-f' ("node hconfig.js --force") 
 automatically generates config_new.json using the values given in 

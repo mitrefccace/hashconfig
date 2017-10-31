@@ -1,0 +1,30 @@
+body {font-family: arial, sans-serif; color: MidnightBlue; margin: 1em; padding: 0; font-size: 100%; line-height: 1.5; background-color: #E0FFFF; }
+article, aside, figcaption, figure, footer, header, nav, section {display: block;}
+h1, h2, h3, h4 {margin: 1em 0 .5em; line-height: 1.25; text-align: center;}
+h1 {font-size: 2em;}
+h2 {font-size: 1.5em;}
+h3 {font-size: 1.2em;}
+ul, ol {margin: 1em 0; padding-left: 40px;}
+p, figure {margin: 1em 0;}
+a img {border: none;}
+sup, sub {line-height: 0;}
+
+/* JSON file formatting */
+pre {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
+.value { color: IndianRed; border: dashed 1px Maroon; }
+.field { color: MidnightBlue; font-weight: bold; }
+
+/*  Button */
+.btn {
+    background-color: MidnightBlue;
+    color: white;
+    padding: 4px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Button on hover & focus */
+.btn:hover, .btn:focus {
+    background-color: MediumSlateBlue;
+}
